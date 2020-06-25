@@ -14,4 +14,4 @@ Then you would pass those in the index.js of the index.js file in the expressjs 
 
 This is a heavy WIP and I was trying to get the hang of deploying an Angular Front End/Node JS backend website that I can selfhost on my own Server.
 
-URL: noredlace.us.to
+URL: https://noredlace.us.to
