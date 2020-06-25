@@ -1,0 +1,92 @@
+<!--
+<p>post-create works! hoorah!</p>
+
+<textarea rows="6" [value]="newPost" #postInput></textarea>
+<hr />
+<button (click)="onAddPost(postInput)">Save Post</button>
+<hr />
+<p>{{ newPost }}</p>
+
+
+<textarea rows="6" [(ngModel)]="ngPost"></textarea>
+<hr />
+<button (click)="onAddPost2()">Save Post</button>
+<hr />
+<p>{{ newPost2 }}</p>
+<hr />
+-->
+
+  <div class="cardList">
+
+    <mat-card class="game-server-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Minecraft Server</mat-card-title>
+        <mat-card-subtitle *ngIf="apiMinecraftModels$">{{apiMinecraftModels$.hostname}}:{{apiMinecraftModels$.port}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://pbs.twimg.com/profile_images/1272846451299811330/eZ4LGx2T_400x400.jpg" alt="Minecraft Twitter Photo">
+      <mat-card-content *ngIf="apiMinecraftModels$">
+        <p>
+          {{apiMinecraftModels$.motd.clean}}
+        </p>
+        <p>
+          Server Status: {{apiMinecraftModels$.online ? "Online" : "Offline"}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="game-server-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Terraria Server</mat-card-title>
+        <mat-card-subtitle *ngIf="apiTerrariaModels$">{{apiTerrariaModels$.address}}:{{apiTerrariaModels$.port}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://pbs.twimg.com/profile_images/2598962009/1pq6f87cxsl21e45v9bd_400x400.jpeg" alt="Terraria Twitter Photo">
+      <mat-card-content *ngIf="apiTerrariaModels$">
+        <p>
+          {{apiTerrariaModels$.name}}
+        </p>
+        <p>
+          Server Status: {{apiTerrariaModels$.is_online ? "Online" : "Offline"}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="game-server-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Don't Starve Together</mat-card-title>
+        <mat-card-subtitle>noredlace.us.to:11000</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://pbs.twimg.com/profile_images/3079768311/13ad975737c867fddd8c3137642d5500_400x400.jpeg" alt="DST Twitter Photo">
+      <mat-card-content>
+        <p>
+          WIP
+        </p>
+        <p>
+          Server Status: Unavailable
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="game-server-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>7 Days To Die Server</mat-card-title>
+        <mat-card-subtitle *ngIf="apiSdtdModels$">{{apiSdtdModels$.address}}:{{apiSdtdModels$.port}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://pbs.twimg.com/profile_images/717452620978212864/lR6mJ_TO_400x400.jpg" alt="7DTD Twitter Photo">
+      <mat-card-content *ngIf="apiSdtdModels$">
+        <p>
+          {{apiSdtdModels$.hostname}}
+        </p>
+        <p>
+          Online: {{apiSdtdModels$.is_online ? "Online" : "Offline"}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+
+
+  </div>

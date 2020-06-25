@@ -1,0 +1,19 @@
+{
+  "name": "noredlace_nodejs",
+  "version": "1.0.0",
+  "description": "nodejs backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-await": "^1.1.0",
+    "mongodb": "^3.5.9",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.2"
+  }
+}

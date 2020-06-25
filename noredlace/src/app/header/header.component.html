@@ -1,0 +1,24 @@
+<mat-toolbar class="home-toolbar">
+
+
+  <section>
+    <div class="home-button">
+      <button mat-menu-item routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span></span>
+      </button>
+    </div>
+  </section>
+
+
+  <button class="home-title" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <span class="fill-remaining-space"></span>
+    {{title}} Personal Site
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/about">
+      <mat-icon>description</mat-icon>
+      <span>About</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

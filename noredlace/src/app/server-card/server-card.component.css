@@ -1,0 +1,16 @@
+.game-server-card {
+  max-width: 300px;
+  margin-top: 60px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.example-header-image {
+  background-image: url('https://noredlace.us.to/savedfiles/profile-wolfcat.png');
+  background-size: cover;
+}
+
+.cardList {
+  display: flex;
+  margin-top: 60px;
+}
