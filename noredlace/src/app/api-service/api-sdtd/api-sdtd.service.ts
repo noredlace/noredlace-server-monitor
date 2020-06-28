@@ -11,7 +11,7 @@ export class ApiSdtdService {
   //apiUrl = 'http://localhost:3000/api/sdtd'
 
   /* IISNode setup on http://express-server.local/ for target Server Machine*/
-  apiUrl = 'https://express.noredlace.us.to/api/sdtd'
+  apiUrl = 'https://express.noredlace.com/api/sdtd'
 
   constructor(private _http: HttpClient) { }
 

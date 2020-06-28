@@ -12,7 +12,7 @@ export class ApiMinecraftService {
   //apiUrl = 'http://localhost:3000/api/minecraft'
 
   /* IISNode setup on http://express-server.local/ for target Server Machine*/
-  apiUrl = 'https://express.noredlace.us.to/api/minecraft'
+  apiUrl = 'https://express.noredlace.com/api/minecraft'
 
   constructor(private _http: HttpClient) { }
 

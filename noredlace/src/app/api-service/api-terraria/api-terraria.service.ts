@@ -11,7 +11,7 @@ export class ApiTerrariaService {
   //apiUrl = 'http://localhost:3000/api/terraria'
 
   /* IISNode setup on http://express-server.local/ for target Server Machine*/
-  apiUrl = 'https://express.noredlace.us.to/api/terraria'
+  apiUrl = 'https://express.noredlace.com/api/terraria'
 
   constructor(private _http: HttpClient) { }
 

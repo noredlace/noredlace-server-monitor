@@ -1,3 +1,5 @@
+
+<div class="header">
 <mat-toolbar class="home-toolbar">
 
 
@@ -9,10 +11,9 @@
       </button>
     </div>
   </section>
-
+  <span class="fill-remaining-space"></span>
 
   <button class="home-title" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <span class="fill-remaining-space"></span>
     {{title}} Personal Site
   </button>
   <mat-menu #menu="matMenu">
@@ -22,3 +23,5 @@
     </button>
   </mat-menu>
 </mat-toolbar>
+
+</div>

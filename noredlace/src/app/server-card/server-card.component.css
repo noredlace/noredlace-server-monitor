@@ -1,8 +1,6 @@
 .game-server-card {
   max-width: 300px;
-  margin-top: 60px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin: 5px;
 }
 
 .example-header-image {
@@ -12,5 +10,8 @@
 
 .cardList {
   display: flex;
-  margin-top: 60px;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 }

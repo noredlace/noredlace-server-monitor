@@ -11,7 +11,7 @@ export class ApiJokeService {
   //apiUrl = 'http://localhost:3000/api/jokes/jod'
 
   /* Production URL for API */
-  apiUrl = 'https://express.noredlace.us.to/api/jokes/jod'
+  apiUrl = 'https://express.noredlace.com/api/jokes/jod'
 
   constructor(private _http: HttpClient) { }
 
