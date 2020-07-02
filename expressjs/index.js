@@ -17,6 +17,7 @@ client.connect(err => {
 
 const api_key_terraria = process.env.API_KEY_TERRARIA
 const api_key_sdtd = process.env.API_KEY_SDTD
+const api_key_dst = process.env.API_KEY_DST
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -42,14 +43,21 @@ app.get('/api/terraria', async (req, res) => {
   res.json(json);
 });
 
-/*
+
 app.get('/api/dst', async (req, res) => {
-  const api_url = 'https://api.minetools.eu/ping/noredlace.us.to/25565';
+  const api_url = 'https://s3.amazonaws.com/klei-lobby/US-Steam-noevent.json.gz';
   const fetch_response = await fetch(api_url);
   const json = await fetch_response.json();
-  res.json(json);
+  
+  var noredCount = 0;
+  for(var i = 0; i < json.GET.length; i++){
+	  if (json.GET[i].host == api_key_dst){
+		  noredCount = i;
+	  }
+  }
+  res.json(json.GET[noredCount]);
 });
-*/
+
 
 app.get('/api/sdtd', async (req, res) => {
   const api_url = 'https://7daystodie-servers.com/api/?object=servers&element=detail&key='+api_key_sdtd+'';
@@ -67,4 +75,5 @@ app.get('/api/jokes/jod', async (req, res) => {
 
 
 // PORT
-app.listen(3000, () => console.log("listening on port 3000..."));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("listening on port 3000..."));
