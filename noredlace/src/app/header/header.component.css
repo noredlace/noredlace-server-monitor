@@ -1,22 +1,35 @@
-.home-button{
+@import url("https://fonts.googleapis.com/css?family=Barlow|Tomorrow:400,700&display=swap");
+
+
+::ng-deep .mat-menu-panel {
+  opacity: .5;
+}
+
+.home-button {
   display: table-cell;
 }
 
 .home-button button {
-    display: table-cell;
-    margin-right: 8px;
-  }
+  display: table-cell;
+  margin-right: 8px;
+}
 
 .fill-remaining-space{
     flex: 1 1 auto;
 }
 
 .home-title {
-    width: auto;
+  width: auto;
+  font-family: Tomorrow, sans-serif;
+  text-shadow: 4px 4px purple;
 }
 
 .header {
     width: 100%;
     flex-shrink: 0;
     flex-grow: 0;
+    opacity: .5;
 }
+
+
+
