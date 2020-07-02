@@ -22,7 +22,7 @@ export class ServerCardComponent implements OnInit {
   apiSdtdModels$: ApiSdtdModel;
   apiDstModels$: ApiDstModel;
 
-  constructor(private apiMinecraftService: ApiMinecraftService, private apiTerrariaService: ApiTerrariaService, private apiSdtdService: ApiSdtdService) { }
+  constructor(private apiMinecraftService: ApiMinecraftService, private apiTerrariaService: ApiTerrariaService, private apiSdtdService: ApiSdtdService, private apiDstService: ApiDstService) { }
 
   ngOnInit() {
 
@@ -31,6 +31,9 @@ export class ServerCardComponent implements OnInit {
     this.getTerrariaStatus();
 
     this.getSdtdStatus();
+
+    this.getDstStatus();
+
 
     /*
     this.apiMinecraftService.getServerStatus()
@@ -63,6 +66,11 @@ export class ServerCardComponent implements OnInit {
   getSdtdStatus() {
     this.apiSdtdService.getServerStatus()
       .subscribe(data => this.apiSdtdModels$ = data);
+  }
+
+  getDstStatus() {
+    this.apiDstService.getServerStatus()
+      .subscribe(data => this.apiDstModels$ = data);
   }
 
 

@@ -20,6 +20,7 @@ import { ApiMinecraftService } from './api-service/api-minecraft/api-minecraft.s
 import { ApiTerrariaService } from './api-service/api-terraria/api-terraria.service';
 import { ApiSdtdService } from './api-service/api-sdtd/api-sdtd.service';
 import { ApiJokeService } from './api-service/api-joke/api-joke.service';
+import { ApiDstService } from './api-service/api-dst/api-dst.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { ApiJokeService } from './api-service/api-joke/api-joke.service';
     MatButtonModule,
     MatIconModule
   ],
-  providers: [ApiMinecraftService, ApiTerrariaService, ApiSdtdService, ApiJokeService],
+  providers: [ApiMinecraftService, ApiTerrariaService, ApiSdtdService, ApiDstService, ApiJokeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

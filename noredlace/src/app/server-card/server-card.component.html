@@ -22,16 +22,31 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>Minecraft Server</mat-card-title>
-        <mat-card-subtitle *ngIf="apiMinecraftModels$">{{apiMinecraftModels$.hostname}}:{{apiMinecraftModels$.port}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="apiMinecraftModels$; else elseBlock">{{apiMinecraftModels$.hostname}}:{{apiMinecraftModels$.port}}</mat-card-subtitle>
+        <ng-template #elseBlock>
+          <mat-card-subtitle>
+            Loading...
+          </mat-card-subtitle>
+        </ng-template>
       </mat-card-header>
       <img mat-card-image src="https://pbs.twimg.com/profile_images/1272846451299811330/eZ4LGx2T_400x400.jpg" alt="Minecraft Twitter Photo">
-      <mat-card-content *ngIf="apiMinecraftModels$">
-        <p>
+      <mat-card-content>
+        <p *ngIf="apiMinecraftModels$; else elseBlock">
           {{apiMinecraftModels$.motd.clean}}
         </p>
-        <p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiMinecraftModels$; else elseBlock">
           Server Status: {{apiMinecraftModels$.online ? "Online" : "Offline"}}
         </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
       </mat-card-content>
     </mat-card>
 
@@ -39,16 +54,31 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>Terraria Server</mat-card-title>
-        <mat-card-subtitle *ngIf="apiTerrariaModels$">{{apiTerrariaModels$.address}}:{{apiTerrariaModels$.port}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="apiTerrariaModels$; else elseBlock">{{apiTerrariaModels$.address}}:{{apiTerrariaModels$.port}}</mat-card-subtitle>
+        <ng-template #elseBlock>
+          <mat-card-subtitle>
+            Loading...
+          </mat-card-subtitle>
+        </ng-template>
       </mat-card-header>
       <img mat-card-image src="https://pbs.twimg.com/profile_images/2598962009/1pq6f87cxsl21e45v9bd_400x400.jpeg" alt="Terraria Twitter Photo">
-      <mat-card-content *ngIf="apiTerrariaModels$">
-        <p>
+      <mat-card-content>
+        <p *ngIf="apiTerrariaModels$; else elseBlock">
           {{apiTerrariaModels$.name}}
         </p>
-        <p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiTerrariaModels$; else elseBlock">
           Server Status: {{apiTerrariaModels$.is_online ? "Online" : "Offline"}}
         </p>
+        <ng-template>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
       </mat-card-content>
     </mat-card>
 
@@ -57,16 +87,28 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>Don't Starve Together</mat-card-title>
-        <mat-card-subtitle>noredlace.us.to:11000</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="apiDstModels$; else elseBlock">noredlace.us.to:{{apiDstModels$.port}}</mat-card-subtitle><ng-template #elseBlock>
+        <mat-card-subtitle>Loading...</mat-card-subtitle>
+        </ng-template>
       </mat-card-header>
       <img mat-card-image src="https://pbs.twimg.com/profile_images/3079768311/13ad975737c867fddd8c3137642d5500_400x400.jpeg" alt="DST Twitter Photo">
       <mat-card-content>
-        <p>
-          WIP
+        <p *ngIf="apiDstModels$; else elseBlock">
+          {{apiDstModels$.name}}
         </p>
-        <p>
-          Server Status: Unavailable
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiDstModels$; else elseBlock">
+          Server Status: Online
         </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
       </mat-card-content>
     </mat-card>
 
@@ -75,16 +117,31 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>7 Days To Die Server</mat-card-title>
-        <mat-card-subtitle *ngIf="apiSdtdModels$">{{apiSdtdModels$.address}}:{{apiSdtdModels$.port}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="apiSdtdModels$; else elseBlock">{{apiSdtdModels$.address}}:{{apiSdtdModels$.port}}</mat-card-subtitle>
+        <ng-template #elseBlock>
+          <mat-card-subtitle>
+            Loading...
+          </mat-card-subtitle>
+        </ng-template>
       </mat-card-header>
       <img mat-card-image src="https://pbs.twimg.com/profile_images/717452620978212864/lR6mJ_TO_400x400.jpg" alt="7DTD Twitter Photo">
-      <mat-card-content *ngIf="apiSdtdModels$">
-        <p>
+      <mat-card-content>
+        <p *ngIf="apiSdtdModels$; else elseBlock">
           {{apiSdtdModels$.hostname}}
         </p>
-        <p>
-          Online: {{apiSdtdModels$.is_online ? "Online" : "Offline"}}
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiSdtdModels$; else elseBlock">
+          Server Status: {{apiSdtdModels$.is_online ? "Online" : "Offline"}}
         </p>
+        <ng-template #elseBlock>
+          <p>
+          Loading...
+          </p>
+        </ng-template>
       </mat-card-content>
     </mat-card>
 
