@@ -50,12 +50,71 @@ app.get('/api/dst', async (req, res) => {
   const json = await fetch_response.json();
   
   var noredCount = 0;
+  var serverFound = false;
   for(var i = 0; i < json.GET.length; i++){
 	  if (json.GET[i].host == api_key_dst){
 		  noredCount = i;
+		  serverFound = true;
+		  break;
 	  }
   }
-  res.json(json.GET[noredCount]);
+  
+  if (serverFound){
+	  res.json(json.GET[noredCount]);
+  }
+  else {
+	  res.json({
+		  __addr: "136.49.186.15",
+		  __lastPing: 1593685686,
+		  __rowId: "5f8eb99a424df012c16098c4531aa22b",
+		  allownewplayers: true,
+		  clanonly: false,
+		  clienthosted: false,
+		  connected: 0,
+		  dedicated: true,
+		  event: false,
+		  fo: false,
+		  guid: "18323691452106159383",
+		  host: "Default",
+		  intent: "cooperative",
+		  lanonly: false,
+		  maxconnections: 20,
+		  mode: "survival",
+		  mods: false,
+		  name: "noredlace server",
+		  password: true,
+		  platform: 1,
+		  port: 11000,
+		  pvp: false,
+		  season: "autumn",
+		  secondaries: {
+			2102590470: {
+			  __addr: "136.49.186.15",
+			  __lastPing: 1593685504,
+			  id: "2102590470",
+			  steamid: "90136661465548800",
+			  port: 11001
+			}
+		  },
+		  session: "691935D1E9F9EB7C",
+		  slaves: {
+			"2102590470": {
+			  __addr: "136.49.186.15",
+			  __lastPing: 1593685504,
+			  id: "2102590470",
+			  steamid: "90136661465548800",
+			  port: 11001
+			}
+		  },
+		  steamid: "",
+		  steamroom: "0",
+		  tags: "english,survival,vote,caves",
+		  v: 418572,
+		  valvecloudserver: false,
+		  valvepopid: ""
+		});
+  }
+  
 });
 
 

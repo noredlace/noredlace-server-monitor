@@ -1,7 +1,7 @@
 export class ApiTerrariaModel {
   public address: string;
   public name: string;
-  public is_online: number;
+  public is_online: string;
   public last_check: string;
   public last_online: string;
   public location: string;
