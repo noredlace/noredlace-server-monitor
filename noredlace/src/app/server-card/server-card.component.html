@@ -22,7 +22,7 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>Minecraft Server</mat-card-title>
-        <mat-card-subtitle *ngIf="apiMinecraftModels$; else elseBlock">{{apiMinecraftModels$.hostname}}:{{apiMinecraftModels$.port}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="apiMinecraftModels$; else elseBlock">{{(apiMinecraftModels$.hostname).substring((apiMinecraftModels$.hostname).length-23)}}</mat-card-subtitle>
         <ng-template #elseBlock>
           <mat-card-subtitle>
             Loading...
@@ -41,6 +41,14 @@
         </ng-template>
         <p *ngIf="apiMinecraftModels$; else elseBlock">
           Server Status: {{apiMinecraftModels$.online ? "Online" : "Offline"}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiMinecraftModels$; else elseBlock">
+          Version: {{apiMinecraftModels$.version}}
         </p>
         <ng-template #elseBlock>
           <p>
@@ -79,6 +87,14 @@
             Loading...
           </p>
         </ng-template>
+        <p *ngIf="apiTerrariaModels$; else elseBlock">
+          Version: {{apiTerrariaModels$.version}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
       </mat-card-content>
     </mat-card>
 
@@ -87,8 +103,8 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>Don't Starve Together</mat-card-title>
-        <mat-card-subtitle *ngIf="apiDstModels$; else elseBlock">noredlace.us.to:{{apiDstModels$.port}}</mat-card-subtitle><ng-template #elseBlock>
-        <mat-card-subtitle>Loading...</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="apiDstModels$; else elseBlock">{{apiDstModels$.__addr}}:{{apiDstModels$.port}}</mat-card-subtitle><ng-template #elseBlock>
+          <mat-card-subtitle>Loading...</mat-card-subtitle>
         </ng-template>
       </mat-card-header>
       <img mat-card-image src="https://server.noredlace.com/savedfiles/dst_transparent_3.png" alt="DST Twitter Photo">
@@ -103,6 +119,14 @@
         </ng-template>
         <p *ngIf="apiDstModels$; else elseBlock">
           Server Status: {{apiDstModels$.host == "Default" ? "Offline" : "Online"}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiDstModels$; else elseBlock">
+          Version: {{apiDstModels$.v}}
         </p>
         <ng-template #elseBlock>
           <p>
@@ -139,11 +163,139 @@
         </p>
         <ng-template #elseBlock>
           <p>
-          Loading...
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiSdtdModels$; else elseBlock">
+          Version: {{apiSdtdModels$.version}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
           </p>
         </ng-template>
       </mat-card-content>
     </mat-card>
 
+
+    <mat-card class="game-server-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Empyrion Server</mat-card-title>
+        <mat-card-subtitle *ngIf="apiEmpyrionModels$; else elseBlock">{{apiEmpyrionModels$.address}}:{{apiEmpyrionModels$.port}}</mat-card-subtitle>
+        <ng-template #elseBlock>
+          <mat-card-subtitle>
+            Loading...
+          </mat-card-subtitle>
+        </ng-template>
+      </mat-card-header>
+      <img mat-card-image src="https://server.noredlace.com/savedfiles/empyrion_transparent.png" alt="7DTD Twitter Photo">
+      <mat-card-content>
+        <p *ngIf="apiSdtdModels$; else elseBlock">
+          {{apiEmpyrionModels$.hostname}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiEmpyrionModels$; else elseBlock">
+          Server Status: {{apiEmpyrionModels$.is_online == "1" ? "Online" : "Offline"}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiEmpyrionModels$; else elseBlock">
+          Version: {{apiEmpyrionModels$.version}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="game-server-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>The Forest Server</mat-card-title>
+        <mat-card-subtitle *ngIf="apiTheForestModels$; else elseBlock">{{apiTheForestModels$.addr}}</mat-card-subtitle>
+        <ng-template #elseBlock>
+          <mat-card-subtitle>
+            Loading...
+          </mat-card-subtitle>
+        </ng-template>
+      </mat-card-header>
+      <img mat-card-image src="https://server.noredlace.com/savedfiles/theforest_transparent.png" alt="7DTD Twitter Photo">
+      <mat-card-content>
+        <p *ngIf="apiTheForestModels$; else elseBlock">
+          {{apiTheForestModels$.addr == "NaN" ? "" : "nored server"}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiTheForestModels$; else elseBlock">
+          Server Status: {{apiTheForestModels$.addr == "NaN" ? "Offline" : "Online"}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiEmpyrionModels$; else elseBlock">
+          Version: N/A
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="game-server-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Valheim Server</mat-card-title>
+        <mat-card-subtitle *ngIf="apiValheimModels$; else elseBlock">{{apiValheimModels$.address}}:{{apiValheimModels$.port}}</mat-card-subtitle>
+        <ng-template #elseBlock>
+          <mat-card-subtitle>
+            Loading...
+          </mat-card-subtitle>
+        </ng-template>
+      </mat-card-header>
+      <img mat-card-image src="https://server.noredlace.com/savedfiles/valheim_transparent.png" alt="7DTD Twitter Photo">
+      <mat-card-content>
+        <p *ngIf="apiValheimModels$; else elseBlock">
+          {{apiValheimModels$.hostname}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiValheimModels$; else elseBlock">
+          Server Status: {{apiValheimModels$.is_online == "1" ? "Online" : "Offline"}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+        <p *ngIf="apiValheimModels$; else elseBlock">
+          Version: {{apiValheimModels$.version}}
+        </p>
+        <ng-template #elseBlock>
+          <p>
+            Loading...
+          </p>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
 
   </div>

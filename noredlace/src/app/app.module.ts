@@ -21,6 +21,9 @@ import { ApiTerrariaService } from './api-service/api-terraria/api-terraria.serv
 import { ApiSdtdService } from './api-service/api-sdtd/api-sdtd.service';
 import { ApiJokeService } from './api-service/api-joke/api-joke.service';
 import { ApiDstService } from './api-service/api-dst/api-dst.service';
+import { ApiEmpyrionService } from './api-service/api-empyrion/api-empyrion.service';
+import { ApiTheForestService } from './api-service/api-theforest/api-theforest.service';
+import { ApiValheimService } from './api-service/api-valheim/api-valheim.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,7 @@ import { ApiDstService } from './api-service/api-dst/api-dst.service';
     MatButtonModule,
     MatIconModule
   ],
-  providers: [ApiMinecraftService, ApiTerrariaService, ApiSdtdService, ApiDstService, ApiJokeService],
+  providers: [ApiMinecraftService, ApiTerrariaService, ApiSdtdService, ApiDstService, ApiEmpyrionService, ApiTheForestService, ApiValheimService, ApiJokeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
