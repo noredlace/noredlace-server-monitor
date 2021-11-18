@@ -222,7 +222,7 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>The Forest Server</mat-card-title>
-        <mat-card-subtitle *ngIf="apiTheForestModels$; else elseBlock">{{apiTheForestModels$.address}}:{{apiTheForestModels$.port}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="apiTheForestModels$; else elseBlock">{{apiTheForestModels$.addr}}</mat-card-subtitle>
         <ng-template #elseBlock>
           <mat-card-subtitle>
             Loading...
@@ -232,7 +232,7 @@
       <img mat-card-image src="https://server.noredlace.com/savedfiles/theforest_transparent.png" alt="7DTD Twitter Photo">
       <mat-card-content>
         <p *ngIf="apiTheForestModels$; else elseBlock">
-          {{apiTheForestModels$.hostname}}
+          {{apiTheForestModels$.addr == "NaN" ? "" : "nored server"}}
         </p>
         <ng-template #elseBlock>
           <p>
@@ -240,7 +240,7 @@
           </p>
         </ng-template>
         <p *ngIf="apiTheForestModels$; else elseBlock">
-          Server Status: {{apiTheForestModels$.is_online == "1" ? "Online" : "Offline"}}
+          Server Status: {{apiTheForestModels$.addr == "NaN" ? "Offline" : "Online"}}
         </p>
         <ng-template #elseBlock>
           <p>
@@ -248,7 +248,7 @@
           </p>
         </ng-template>
         <p *ngIf="apiEmpyrionModels$; else elseBlock">
-          Version: {{apiEmpyrionModels$.version}}
+          Version: N/A
         </p>
         <ng-template #elseBlock>
           <p>

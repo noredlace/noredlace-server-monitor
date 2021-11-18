@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const fetch = require("node-fetch");
-require('dotenv').config();
+require('dotenv').config({path:'/mnt/Media/Websites/express-noredlace/.env'});
 
 /*
 const MongoClient = require('mongodb').MongoClient;
@@ -15,22 +15,16 @@ client.connect(err => {
 });
 */
 
-console.log(process.env);
-
-const url_minecraft = "https://api.mcsrvstat.us/2/minecraft.noredlace.com"
-const url_terraria = "https://terraria-servers.com/api/?object=servers&element=detail&key="
-const url_sdtd = "https://7daystodie-servers.com/api/?object=servers&element=detail&key="
-const url_dst = "https://s3.amazonaws.com/klei-lobby/US-Steam-noevent.json.gz"
-const url_empyrion = "https://empyrion-servers.com/api/?object=servers&element=detail&key="
-const url_theforest = "https://empyrion-servers.com/api/?object=servers&element=detail&key="
-const url_valheim = "https://valheim-servers.io/api/?object=servers&element=detail&key="
+const url_minecraft = process.env.URL_MINECRAFT
+const url_terraria = process.env.URL_TERRARIA
+const url_sdtd = process.env.URL_SDTD
+const url_dst = process.env.URL_DST
+const url_empyrion = process.env.URL_EMPYRION
+const url_theforest = process.env.URL_THEFOREST
+const url_valheim = process.env.URL_VALHEIM
 
 const api_key_dst = process.env.API_KEY_DST
-const api_key_terraria = process.env.API_KEY_TERRARIA
-const api_key_sdtd = process.env.API_KEY_SDTD
-const api_key_empyrion = process.env.API_KEY_EMPYRION
-const api_key_theforest = process.env.API_KEY_THEFOREST
-const api_key_valheim = process.env.API_KEY_VALHEIM || "qVyyfChBMd5IpGSGNyE97pQf2sX4Bf8qQd"
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -50,7 +44,7 @@ app.get('/api/minecraft', async (req, res) => {
 });
 
 app.get('/api/terraria', async (req, res) => {
-  const api_url = url_terraria + api_key_terraria;
+  const api_url = url_terraria;
   const fetch_response = await fetch(api_url);
   const json = await fetch_response.json();
   res.json(json);
@@ -130,31 +124,65 @@ app.get('/api/dst', async (req, res) => {
   
 });
 
-
 app.get('/api/sdtd', async (req, res) => {
-  const api_url = url_sdtd + api_key_sdtd;
+  const api_url = url_sdtd;
   const fetch_response = await fetch(api_url);
   const json = await fetch_response.json();
   res.json(json);
 });
 
 app.get('/api/empyrion', async (req, res) => {
-	const api_url = url_empyrion + api_key_empyrion;
+	const api_url = url_empyrion;
 	const fetch_response = await fetch(api_url);
 	const json = await fetch_response.json();
 	res.json(json);
   });
+
+/*
+app.get('/api/theforest', async (req, res) => {
+	const api_url = url_theforest;
+	const fetch_response = await fetch(api_url);
+	const json = await fetch_response.json();
+	res.json(json);
+  });
+*/
 
 app.get('/api/theforest', async (req, res) => {
-	const api_url = url_theforest + api_key_theforest;
+	const api_url = url_theforest;
 	const fetch_response = await fetch(api_url);
 	const json = await fetch_response.json();
-	res.json(json);
+
+	var noredCount = 0;
+	var serverFound = false;
+	for(var i = 0; i < json.response.servers.length; i++){
+		if (json.response.servers[i].gamedir == "theforestDS"){
+			noredCount = i;
+			serverFound = true;
+			break;
+		}
+	}
+	
+	if (serverFound){
+		res.json(json.response.servers[noredCount]);
+	}
+	else {
+		res.json({
+			addr: "NaN",
+			gmsindex: "NaN",
+			appid: "NaN",
+			gamedir: "NaN",
+			region: "NaN",
+			secure: "NaN",
+			lan: "NaN",
+			gameport: "NaN",
+			specport: "NaN"
+		  });
+	}
+
   });
 
-
 app.get('/api/valheim', async (req, res) => {
-	const api_url = url_valheim + api_key_valheim;
+	const api_url = url_valheim;
 	const fetch_response = await fetch(api_url);
 	const json = await fetch_response.json();
 	res.json(json);
@@ -166,7 +194,6 @@ app.get('/api/jokes/jod', async (req, res) => {
   const json = await fetch_response.json();
   res.json(json);
 });
-
 
 // PORT
 const PORT = process.env.PORT || 3000;
