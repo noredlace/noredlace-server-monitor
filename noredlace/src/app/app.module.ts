@@ -16,14 +16,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { ApiMinecraftService } from './api-service/api-minecraft/api-minecraft.service';
-import { ApiTerrariaService } from './api-service/api-terraria/api-terraria.service';
-import { ApiSdtdService } from './api-service/api-sdtd/api-sdtd.service';
 import { ApiJokeService } from './api-service/api-joke/api-joke.service';
-import { ApiDstService } from './api-service/api-dst/api-dst.service';
-import { ApiEmpyrionService } from './api-service/api-empyrion/api-empyrion.service';
-import { ApiTheForestService } from './api-service/api-theforest/api-theforest.service';
-import { ApiValheimService } from './api-service/api-valheim/api-valheim.service';
+import { ApiGameServersService } from './api-service/api-gameservers/api-gameservers.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +38,7 @@ import { ApiValheimService } from './api-service/api-valheim/api-valheim.service
     MatButtonModule,
     MatIconModule
   ],
-  providers: [ApiMinecraftService, ApiTerrariaService, ApiSdtdService, ApiDstService, ApiEmpyrionService, ApiTheForestService, ApiValheimService, ApiJokeService],
+  providers: [ApiJokeService, ApiGameServersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
