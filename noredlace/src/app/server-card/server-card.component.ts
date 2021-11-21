@@ -7,6 +7,8 @@ import { ApiDstService } from '../api-service/api-dst/api-dst.service';
 import { ApiEmpyrionService } from '../api-service/api-empyrion/api-empyrion.service';
 import { ApiTheForestService } from '../api-service/api-theforest/api-theforest.service';
 import { ApiValheimService } from '../api-service/api-valheim/api-valheim.service';
+import { ApiGameServersService } from '../api-service/api-gameservers/api-gameservers.service';
+
 
 import { ApiMinecraftModel } from '../api-model/api-minecraft/api-minecraft.model';
 import { ApiTerrariaModel } from '../api-model/api-terraria/api-terraria.model';
@@ -15,6 +17,7 @@ import { ApiDstModel } from '../api-model/api-dst/api-dst.model';
 import { ApiEmpyrionModel } from '../api-model/api-empyrion/api-empyrion.model';
 import { ApiTheForestModel } from '../api-model/api-theforest/api-theforest.model';
 import { ApiValheimModel } from '../api-model/api-valheim/api-valheim.model';
+import { ApiGameServersModel } from '../api-model/api-gameservers/api-gameservers.model';
 
 @Component({
   selector: 'app-server-card',
@@ -29,8 +32,9 @@ export class ServerCardComponent implements OnInit {
   apiEmpyrionModels$: ApiEmpyrionModel;
   apiTheForestModels$: ApiTheForestModel;
   apiValheimModels$: ApiValheimModel;
+  apiGameServersModels$: ApiGameServersModel;
 
-  constructor(private apiMinecraftService: ApiMinecraftService, private apiTerrariaService: ApiTerrariaService, private apiSdtdService: ApiSdtdService, private apiDstService: ApiDstService, private apiEmpyrionService: ApiEmpyrionService, private apiTheForestService: ApiTheForestService, private apiValheimService: ApiValheimService) { }
+  constructor(private apiMinecraftService: ApiMinecraftService, private apiTerrariaService: ApiTerrariaService, private apiSdtdService: ApiSdtdService, private apiDstService: ApiDstService, private apiEmpyrionService: ApiEmpyrionService, private apiTheForestService: ApiTheForestService, private apiValheimService: ApiValheimService, private apiGameServerService: ApiGameServersService) { }
 
   ngOnInit() {
 
@@ -47,6 +51,8 @@ export class ServerCardComponent implements OnInit {
     this.getTheForestStatus();
 
     this.getValheimStatus();
+
+    this.getGameServersStatus();
 
 
 
@@ -101,6 +107,11 @@ export class ServerCardComponent implements OnInit {
   getValheimStatus() {
     this.apiValheimService.getServerStatus()
       .subscribe(data => this.apiValheimModels$ = data);
+  }
+
+  getGameServersStatus(){
+    this.apiGameServerService.getServerStatus()
+      .subscribe(data => this.apiGameServersModels$ = data);    
   }
 
 }
