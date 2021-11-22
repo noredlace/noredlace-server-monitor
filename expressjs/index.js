@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const fetch = require("node-fetch");
 require('dotenv').config({path:'/mnt/Media/Websites/express-noredlace/.env'});
-//require('dotenv').config({ path: ".env" });
+//require('dotenv').config({ path: "./.env" });
 var config = require('/mnt/Media/Websites/express-noredlace/config.json');
 //var config = require('./config.json');
 
