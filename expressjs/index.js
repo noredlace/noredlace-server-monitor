@@ -2,9 +2,10 @@ const express = require('express');
 const app = express();
 const fetch = require("node-fetch");
 require('dotenv').config({path:'/mnt/Media/Websites/express-noredlace/.env'});
-//require('dotenv').config({ path: "./.env" });
 var config = require('/mnt/Media/Websites/express-noredlace/config.json');
-//var config = require('./config.json');
+
+//require('dotenv').config({ path: "D:/GitFork/noredlace_server_monitor/expressjs/.env" });
+//var config = require("D:/GitFork/noredlace_server_monitor/expressjs/config.json");
 
 /*
 const MongoClient = require('mongodb').MongoClient;
@@ -59,71 +60,124 @@ app.get('/api/gameservers', async (req, res) => {
 		var jsonVal = json;
 
 
-		/* Handle Custom Case for DST */
-		if (game == "Don't Starve Together") {
+		switch (game) {
 
-			var noredCount = 0;
-			var serverFound = false;
-			for (var j = 0; j < json.GET.length; j++) {
-				if (json.GET[j].host == apikey) {
-					noredCount = j;
-					serverFound = true;
-					break;
+			/* Handle Custom Case for DST */
+			case "Don't Starve Together":
+				var noredCount = 0;
+				var serverFound = false;
+
+				/* Check all Returned Servers for our Host Key */
+				for (var j = 0; j < json.GET.length; j++) {
+					if (json.GET[j].host == apikey) {
+						noredCount = j;
+						serverFound = true;
+						break;
+					}
 				}
-			}
 
-			if (serverFound) {
-				jsonVal = json.GET[noredCount];
-			}
-		}
+				/* If Host was found, return that record and Modify it to fit our Model */
+				if (serverFound) {
+					jsonVal = json.GET[noredCount];
 
-		/* Handle Custom Case for TheForest */
-		if (game == "The Forest") {
-
-			var noredCount = 0;
-			var serverFound = false;
-			for (var j = 0; j < json.response.servers.length; j++) {
-				if (json.response.servers[j].gamedir == apikey) {
-					noredCount = j;
-					serverFound = true;
-					break;
+					jsonResult = {
+						"Game": game,
+						"Name": name,
+						"SavedFileURL": savedfileurl,
+						"Address": jsonVal[address] || address,
+						"Port": jsonVal[port] || port,
+						"Description": jsonVal[description] || description,
+						"IsOnline": Boolean(jsonVal[isonline]) || Boolean(isonline),
+						"Version": jsonVal[version] || version
+					}
 				}
-			}
-		
-			if (serverFound) {
-				jsonVal = json.response.servers[noredCount];
-			}
-		}
+				else {
+					jsonResult = {
+						"Game": game,
+						"Name": name,
+						"SavedFileURL": savedfileurl,
+						"Address": "N/A",
+						"Port": "N/A",
+						"Description": "N/A",
+						"IsOnline": false,
+						"Version": "N/A"
+					}
+				}
+				break;
 
-		//res.json(json);
-		jsonResult = {
-			"Game": game,
-			"Name": name,
-			"SavedFileURL": savedfileurl,
-			"Address": jsonVal[address] || address,
-			"Port": jsonVal[port] || port,
-			"Description": jsonVal[description] || description,
-			"IsOnline": jsonVal[isonline] || isonline,
-			"Version": jsonVal[version] || version
-		}
+			/* Handle Custom Case for TheForest */
+			case "The Forest":
+				var noredCount = 0;
+				var serverFound = false;
 
-		/* Handle Custom Case for Minecraft Description */
-		if (game == "Minecraft"){
-			jsonResult = {
-				"Game": game,
-				"Name": name,
-				"SavedFileURL": savedfileurl,
-				"Address": jsonVal[address] || address,
-				"Port": jsonVal[port] || port,
-				"Description": jsonVal[description]["clean"][0] || description,
-				"IsOnline": jsonVal[isonline] || isonline,
-				"Version": jsonVal[version] || version
-			}
+				/* Check all Returned Servers for our Game */
+				for (var j = 0; j < json.response.servers.length; j++) {
+					if (json.response.servers[j].gamedir == apikey) {
+						noredCount = j;
+						serverFound = true;
+						break;
+					}
+				}
+
+				/* If Game was found, return that record and Modify it to fit our Model */
+				if (serverFound) {
+					jsonVal = json.response.servers[noredCount];
+
+					jsonResult = {
+						"Game": game,
+						"Name": name,
+						"SavedFileURL": savedfileurl,
+						"Address": jsonVal[address] || address,
+						"Port": jsonVal[port] || port,
+						"Description": jsonVal[description] || description,
+						"IsOnline": Boolean(jsonVal[isonline]) || Boolean(isonline),
+						"Version": jsonVal[version] || version
+					}
+				}
+				else {
+					jsonResult = {
+						"Game": game,
+						"Name": name,
+						"SavedFileURL": savedfileurl,
+						"Address": "N/A",
+						"Port": "N/A",
+						"Description": "N/A",
+						"IsOnline": false,
+						"Version": "N/A"
+					}
+				}
+				break;
+
+			/* Handle Custom Case for Minecraft Description */
+			case "Minecraft":
+
+				/* The Minecraft API returns a Json Array for the Description. We are Default choosing the Clean Value */
+				jsonResult = {
+					"Game": game,
+					"Name": name,
+					"SavedFileURL": savedfileurl,
+					"Address": jsonVal[address] || address,
+					"Port": jsonVal[port] || port,
+					"Description": jsonVal[description]["clean"][0] || description,
+					"IsOnline": Boolean(jsonVal[isonline]) || Boolean(isonline),
+					"Version": jsonVal[version] || version
+				}
+				break;
+
+			default:
+				jsonResult = {
+					"Game": game,
+					"Name": name,
+					"SavedFileURL": savedfileurl,
+					"Address": jsonVal[address] || address,
+					"Port": jsonVal[port] || port,
+					"Description": jsonVal[description] || description,
+					"IsOnline": Boolean(jsonVal[isonline]) || Boolean(isonline),
+					"Version": jsonVal[version] || version
+				}
 		}
 
 		result += JSON.stringify(jsonResult) + ',';
-		//console.log(jsonResult);
-
 	}
 
 
