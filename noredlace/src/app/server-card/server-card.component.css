@@ -45,6 +45,20 @@ p {
   padding: 5px;
 }
 
+.online-mat-card-title {
+  font-family: Tomorrow, sans-serif;
+  text-shadow: 1px 1px rgb(0,255,159);
+  font-size: 20px;
+  padding: 5px;
+}
+
+.offline-mat-card-title {
+  font-family: Tomorrow, sans-serif;
+  text-shadow: 1px 1px rgb(255, 12, 105);
+  font-size: 20px;
+  padding: 5px;
+}
+
 .mat-card-subtitle {
   font-family: Tomorrow, sans-serif;
   font-size: 18px;
@@ -52,6 +66,37 @@ p {
   background-color: rgba(214, 0, 255, .4);
   padding: 5px;
 }
+
+.online-mat-card-subtitle {
+  font-family: Tomorrow, sans-serif;
+  font-size: 18px;
+  text-shadow: 1px 1px rgb(0,255,159);
+  padding: 5px;
+}
+
+.offline-mat-card-subtitle {
+  font-family: Tomorrow, sans-serif;
+  font-size: 18px;
+  text-shadow: 1px 1px rgb(255, 12, 105);
+  padding: 5px;
+}
+
+p.online-card-subtitle {
+  font-family: Tomorrow, sans-serif;
+  font-size: 15px;
+  text-shadow: 1px 1px rgb(0,255,159);
+  background-color: rgba(214, 0, 255, .4);
+  padding: 5px;
+}
+
+p.offline-card-subtitle {
+  font-family: Tomorrow, sans-serif;
+  font-size: 15px;
+  text-shadow: 1px 1px rgb(255, 12, 105);
+  background-color: rgba(214, 0, 255, .4);
+  padding: 5px;
+}
+
 
 
 

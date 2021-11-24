@@ -3,18 +3,32 @@
     <mat-card class="game-server-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{ gameServerModel.Name }}</mat-card-title>
-        <mat-card-subtitle *ngIf="apiGameServersModels$; else elseBlock">
+        <mat-card-title>
+          <div class="online-mat-card-title" *ngIf="gameServerModel.IsOnline">
+            {{ gameServerModel.Name }}
+          </div>
+          <div class="offline-mat-card-title" *ngIf="!gameServerModel.IsOnline">
+            {{ gameServerModel.Name }}
+          </div>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <div class="online-mat-card-subtitle" *ngIf="gameServerModel.IsOnline">
           <div *ngIf="gameServerModel.Port != 'N/A'">
             {{ gameServerModel.Address }}:{{ gameServerModel.Port }}
           </div>
           <div *ngIf="gameServerModel.Port == 'N/A'">
             {{ gameServerModel.Address }}
           </div>
+        </div>
+        <div class="offline-mat-card-subtitle" *ngIf="!gameServerModel.IsOnline">
+          <div *ngIf="gameServerModel.Port != 'N/A'">
+            {{ gameServerModel.Address }}:{{ gameServerModel.Port }}
+          </div>
+          <div *ngIf="gameServerModel.Port == 'N/A'">
+            {{ gameServerModel.Address }}
+          </div>
+        </div>
         </mat-card-subtitle>
-        <ng-template #elseBlock>
-          <mat-card-subtitle> Loading... </mat-card-subtitle>
-        </ng-template>
       </mat-card-header>
       <img
         mat-card-image
@@ -22,24 +36,26 @@
         alt="{{ gameServerModel.Game }}_Photo"
       />
       <mat-card-content>
-        <p *ngIf="apiGameServersModels$; else elseBlock">
+        <p class="online-card-subtitle" *ngIf="gameServerModel.IsOnline">
           {{ gameServerModel.Description }}
         </p>
-        <ng-template #elseBlock>
-          <p>Loading...</p>
-        </ng-template>
-        <p *ngIf="apiGameServersModels$ && gameServerModel.IsOnline; else elseBlock">
-          Server Status: {{ gameServerModel.IsOnline == "0" ? "Offline" : "Online" }}
+        <p class="offline-card-subtitle" *ngIf="!gameServerModel.IsOnline">
+          {{ gameServerModel.Description }}
         </p>
-        <ng-template #elseBlock>
-          <p>Loading...</p>
-        </ng-template>
-        <p *ngIf="apiGameServersModels$; else elseBlock">
+
+        <p class="online-card-subtitle" *ngIf="gameServerModel.IsOnline">
+          Server Status: Online
+        </p>
+        <p class="offline-card-subtitle" *ngIf="!gameServerModel.IsOnline">
+          Server Status: Offine
+        </p>
+
+        <p class="online-card-subtitle" *ngIf="gameServerModel.IsOnline">
           Version: {{ gameServerModel.Version }}
         </p>
-        <ng-template #elseBlock>
-          <p>Loading...</p>
-        </ng-template>
+        <p class="offline-card-subtitle" *ngIf="!gameServerModel.IsOnline">
+          Version: {{ gameServerModel.Version }}
+        </p>
       </mat-card-content>
     </mat-card>
   </li>
