@@ -9,7 +9,7 @@ import { ApiGameServersModel } from '../../api-model/api-gameservers/api-gameser
 export class ApiGameServersService {
 
   /* LocalHost for Dev Work */
-  //apiUrl = 'http://localhost:3000/api/dst'
+  //apiUrl = 'http://localhost:3000/api/gameservers'
 
   /* IISNode setup on http://express-server.local/ for target Server Machine*/
   apiUrl = 'https://express.noredlace.com/api/gameservers'
