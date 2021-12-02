@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
 const fetch = require("node-fetch");
-require('dotenv').config({path:'/mnt/Media/Websites/express-noredlace/.env'});
-var config = require('/mnt/Media/Websites/express-noredlace/config.json');
+const Gamedig = require('gamedig');
 
-//require('dotenv').config({ path: "D:/GitFork/noredlace_server_monitor/expressjs/.env" });
-//var config = require("D:/GitFork/noredlace_server_monitor/expressjs/config.json");
+//require('dotenv').config({path:'/mnt/Media/Websites/express-noredlace/.env'});
+//var config = require('/mnt/Media/Websites/express-noredlace/config.json');
+
+//Local Dev Environment
+require('dotenv').config({ path: "D:/GitFork/noredlace_server_monitor/expressjs/.env" });
+var config = require("D:/GitFork/noredlace_server_monitor/expressjs/config.json");
 
 /*
 const MongoClient = require('mongodb').MongoClient;
@@ -34,8 +37,6 @@ app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
-
-
 
 
 app.get('/api/gameservers', async (req, res) => {
