@@ -22,6 +22,8 @@ client.connect(err => {
 });
 */
 
+
+
 const url_minecraft = process.env.URL_MINECRAFT
 const url_terraria = process.env.URL_TERRARIA
 const url_sdtd = process.env.URL_SDTD
@@ -38,6 +40,27 @@ app.use(function (req, res, next) {
 	next();
 });
 
+
+app.get('/api/gamedig', async (req, res) => {
+	Gamedig.query({
+		type: '7d2d',
+		host: '136.49.127.43'
+	}).then((state) => {
+		res.json(state);
+	}).catch((error) => {
+		jsonResult = {
+			"Game": "N/A",
+			"Name": "N/A",
+			"SavedFileURL": "N/A",
+			"Address": "N/A",
+			"Port": "N/A",
+			"Description": "N/A",
+			"IsOnline": false,
+			"Version": "N/A",
+		}
+		res.json(jsonResult);
+	});
+});
 
 app.get('/api/gameservers', async (req, res) => {
 	var result = '';
@@ -194,10 +217,24 @@ app.get('/api/servers', (req, res) => {
 });
 
 app.get('/api/minecraft', async (req, res) => {
-	const api_url = url_minecraft;
-	const fetch_response = await fetch(api_url);
-	const json = await fetch_response.json();
-	res.json(json);
+	Gamedig.query({
+		type: 'minecraft',
+		host: 'minecraft.noredlace.com'
+	}).then((state) => {
+		res.json(state);
+	}).catch((error) => {
+		jsonResult = {
+			"Game": "N/A",
+			"Name": "N/A",
+			"SavedFileURL": "N/A",
+			"Address": "N/A",
+			"Port": "N/A",
+			"Description": "N/A",
+			"IsOnline": false,
+			"Version": "N/A",
+		}
+		res.json(jsonResult);
+	});
 });
 
 app.get('/api/terraria', async (req, res) => {
@@ -289,10 +326,24 @@ app.get('/api/sdtd', async (req, res) => {
 });
 
 app.get('/api/empyrion', async (req, res) => {
-	const api_url = url_empyrion;
-	const fetch_response = await fetch(api_url);
-	const json = await fetch_response.json();
-	res.json(json);
+	Gamedig.query({
+		type: 'empyrion',
+		host: '136.49.127.43'
+	}).then((state) => {
+		res.json(state);
+	}).catch((error) => {
+		jsonResult = {
+			"Game": "N/A",
+			"Name": "N/A",
+			"SavedFileURL": "N/A",
+			"Address": "N/A",
+			"Port": "N/A",
+			"Description": "N/A",
+			"IsOnline": false,
+			"Version": "N/A",
+		}
+		res.json(jsonResult);
+	});
 });
 
 /*
@@ -339,10 +390,24 @@ app.get('/api/theforest', async (req, res) => {
 });
 
 app.get('/api/valheim', async (req, res) => {
-	const api_url = url_valheim;
-	const fetch_response = await fetch(api_url);
-	const json = await fetch_response.json();
-	res.json(json);
+	Gamedig.query({
+		type: 'valheim',
+		host: '136.49.127.43'
+	}).then((state) => {
+		res.json(state);
+	}).catch((error) => {
+		jsonResult = {
+			"Game": "N/A",
+			"Name": "N/A",
+			"SavedFileURL": "N/A",
+			"Address": "N/A",
+			"Port": "N/A",
+			"Description": "N/A",
+			"IsOnline": false,
+			"Version": "N/A",
+		}
+		res.json(jsonResult);
+	});
 });
 
 
