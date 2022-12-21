@@ -1,9 +1,14 @@
 const express = require('express');
 const app = express();
 const fetch = require("node-fetch");
+const fs = require("fs");
+
+
+/* PROD VARIABLES. COMMENT OUT WHEN DEBUGGING. UNCOMMENT FOR PROD */
 require('dotenv').config({path:'/mnt/Media/Websites/express-noredlace/.env'});
 var config = require('/mnt/Media/Websites/express-noredlace/config.json');
 
+/* DEBUG VARIABLES. UNCOMMENT WHEN DEBUGGING. COMMENT OUT FOR PROD */
 //require('dotenv').config({ path: "D:/GitFork/noredlace_server_monitor/expressjs/.env" });
 //var config = require("D:/GitFork/noredlace_server_monitor/expressjs/config.json");
 
@@ -367,6 +372,45 @@ app.get('/api/jokes/jod', async (req, res) => {
 	const fetch_response = await fetch(api_url);
 	const json = await fetch_response.json();
 	res.json(json);
+});
+
+/*
+WAKFU API
+*/
+
+app.get('/api/wakfu/professions', async (req,res) => {
+
+	try {
+		professionList = []
+
+		var professionsFolder = './WakfuRecipes/'
+		fs.readdirSync(professionsFolder).forEach(file => {
+			professionObject = new Object();
+			professionObject.profession = file.replace('Recipes.json','');
+			professionObject.modifiedDate = fs.statSync(professionsFolder+file).ctime.toDateString();
+			professionList.push(professionObject);
+		  });
+
+		res.json(professionList);
+	} catch (error) {
+		res.json('{"Error": "' + error + '"}');
+	}
+
+});
+
+app.get('/api/wakfu/profession/:ProfessionName', async (req,res) => {
+	var professionName = req.params.ProfessionName
+	var professionFolder = './WakfuRecipes/'
+	var professionFileName = professionName + "Recipes.json"
+	var professionFilePath = professionFolder + professionFileName
+
+	try {
+		var recipeJson = fs.readFileSync(professionFilePath, 'utf-8');
+
+		res.json(JSON.parse(recipeJson));
+	} catch (error) {
+		res.json('{"Error": "' + error + '"}');
+	}
 });
 
 // PORT
