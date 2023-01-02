@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow|Tomorrow:400,700&display=swap");
+
+
+::ng-deep .mat-menu-panel {
+  opacity: .5;
+}
+
+.mat-menu-item{
+    float: right;
+}
+
+.home-button {
+  display: table-cell;
+}
+
+.home-button button {
+  display: table-cell;
+  margin-right: 8px;
+}
+
+.fill-remaining-space{
+    flex: 1 1 auto;
+}
+
+.home-title {
+  background-color:rgba(0,0,0,0);
+  width: auto;
+  font-family: Tomorrow, sans-serif;
+  text-shadow: 1px 1px rgb(0,255,159);
+}
+
+.header {
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 0;
+    opacity: .5;
+}
+
+span {
+  font-family: Tomorrow, sans-serif;
+  text-shadow: 1px 1px rgb(0,255,159);
+}
+
+
+
