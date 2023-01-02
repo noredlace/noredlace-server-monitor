@@ -1,0 +1,27 @@
+
+<div class="header">
+<mat-toolbar class="home-toolbar">
+
+
+  <section>
+    <div class="home-button">
+      <button mat-icon-button routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span></span>
+      </button>
+    </div>
+  </section>
+  <span class="fill-remaining-space"></span>
+
+  <button class="home-title" mat-flat-button [matMenuTriggerFor]="beforemenu">
+    {{title}} Personal Site
+  </button>
+  <mat-menu #beforemenu="matMenu" xPosition="before">
+    <button mat-menu-item routerLink="/about">
+      <mat-icon>description</mat-icon>
+      <span>About</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+</div>

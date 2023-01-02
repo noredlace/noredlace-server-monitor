@@ -1,0 +1,62 @@
+<div class="cardList">
+  <li *ngFor="let gameServerModel of apiGameServersModels$; let i = index">
+    <mat-card class="game-server-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+          <div class="online-mat-card-title" *ngIf="gameServerModel.IsOnline">
+            {{ gameServerModel.Name }}
+          </div>
+          <div class="offline-mat-card-title" *ngIf="!gameServerModel.IsOnline">
+            {{ gameServerModel.Name }}
+          </div>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <div class="online-mat-card-subtitle" *ngIf="gameServerModel.IsOnline">
+          <div *ngIf="gameServerModel.Port != 'N/A'">
+            {{ gameServerModel.Address }}:{{ gameServerModel.Port }}
+          </div>
+          <div *ngIf="gameServerModel.Port == 'N/A'">
+            {{ gameServerModel.Address }}
+          </div>
+        </div>
+        <div class="offline-mat-card-subtitle" *ngIf="!gameServerModel.IsOnline">
+          <div *ngIf="gameServerModel.Port != 'N/A'">
+            {{ gameServerModel.Address }}:{{ gameServerModel.Port }}
+          </div>
+          <div *ngIf="gameServerModel.Port == 'N/A'">
+            {{ gameServerModel.Address }}
+          </div>
+        </div>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="{{ gameServerModel.SavedFileURL }}"
+        alt="{{ gameServerModel.Game }}_Photo"
+      />
+      <mat-card-content>
+        <p class="online-card-subtitle" *ngIf="gameServerModel.IsOnline">
+          {{ gameServerModel.Description }}
+        </p>
+        <p class="offline-card-subtitle" *ngIf="!gameServerModel.IsOnline">
+          {{ gameServerModel.Description }}
+        </p>
+
+        <p class="online-card-subtitle" *ngIf="gameServerModel.IsOnline">
+          Server Status: Online
+        </p>
+        <p class="offline-card-subtitle" *ngIf="!gameServerModel.IsOnline">
+          Server Status: Offine
+        </p>
+
+        <p class="online-card-subtitle" *ngIf="gameServerModel.IsOnline">
+          Version: {{ gameServerModel.Version }}
+        </p>
+        <p class="offline-card-subtitle" *ngIf="!gameServerModel.IsOnline">
+          Version: {{ gameServerModel.Version }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </li>
+</div>
