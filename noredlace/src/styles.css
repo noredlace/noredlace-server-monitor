@@ -8,7 +8,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 html {
   /*background-color: black;*/
   /*background-image: linear-gradient(black,gray);*/
-  background-image: url('https://server.noredlace.com/savedfiles/cyberpunk-2077-car.gif');
+  background-image: url('/assets/images/cyberpunk-2077-car.gif');
   background-size: cover;
   /*background-attachment: fixed;*/
 }
